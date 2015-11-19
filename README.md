@@ -454,7 +454,9 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 
 
 
-<h2 id="common-issues-encounter-while-running-meteor"><strong>Common issues encounter while running Meteor</strong></h2>
+<h1 id="common-issues-encounter-while-running-meteor"><strong>Common issues encounter while running Meteor</strong></h1>
+
+<hr>
 
 <h3 id="error-apc-error-cannot-redeclare-class"><strong>error: [apc-error] Cannot redeclare class</strong></h3>
 
