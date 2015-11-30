@@ -33,7 +33,16 @@
 </ul>
 </li>
 <li><a href="#faqs">FAQs</a></li>
-<li><a href="#common-issues-encounter-while-running-meteor">Common issues encounter while running Meteor</a></li>
+</ul>
+</li>
+<li><a href="#common-issues-encounter-while-running-meteor">Common issues encounter while running Meteor</a><ul>
+<li><ul>
+<li><a href="#error-apc-error-cannot-redeclare-class">error: [apc-error] Cannot redeclare class</a></li>
+<li><a href="#suhosin-enabled-on-server">Suhosin  enabled on server</a></li>
+<li><a href="#phar-extension-disabled">phar extension disabled</a></li>
+<li><a href="#mysql-timeout">MySQL Timeout</a></li>
+</ul>
+</li>
 <li><a href="#other-ant-tasks">Other Ant Tasks</a></li>
 </ul>
 </li>
@@ -378,6 +387,8 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 
 <p>To run migrations from x version to y, then you can use <strong>file-migrations:migrate</strong> command</p>
 
+
+
 <h3 id="commands-related-to-migrations-imported-from-doctrine"><strong>Commands related to migrations imported from Doctrine</strong></h3>
 
 <hr>
@@ -458,11 +469,15 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 
 <hr>
 
+
+
 <h3 id="error-apc-error-cannot-redeclare-class"><strong>error: [apc-error] Cannot redeclare class</strong></h3>
 
 <p>If you get error: [apc-error] Cannot redeclare class… There is an issue with composer and apc Run the above script by overriding the php.ini value for apc.enable_cli in order to switch it off.</p>
 
 <p>The command to do so:</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs lasso">php <span class="hljs-attribute">-d</span> apc<span class="hljs-built_in">.</span>enable_cli<span class="hljs-subst">=</span><span class="hljs-number">0</span> meteor<span class="hljs-built_in">.</span>phar patch:apply <span class="hljs-subst">--</span>path<span class="hljs-subst">=</span>/<span class="hljs-built_in">var</span>/www/jadu <span class="hljs-subst">--</span>patch<span class="hljs-attribute">-path</span><span class="hljs-subst">=</span>/home/jadu_patch</code></pre>
 
@@ -472,6 +487,8 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 
 <p>If the server is Suhosin  enabled. Run the following command:</p>
 
+
+
 <pre class="prettyprint"><code class=" hljs avrasm">php -d suhosin<span class="hljs-preprocessor">.executor</span><span class="hljs-preprocessor">.include</span><span class="hljs-preprocessor">.whitelist</span>=phar meteor<span class="hljs-preprocessor">.phar</span> patch:apply --path=/var/www/jadu --patch-path=/home/jadu_patch</code></pre>
 
 
@@ -479,6 +496,8 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 <h3 id="phar-extension-disabled"><strong>phar extension disabled</strong></h3>
 
 <p>If phar extension is disabled and the version of PHP on the server is greater than 5.3. </p>
+
+
 
 <pre class="prettyprint"><code class=" hljs lasso">php <span class="hljs-attribute">-d</span> extension<span class="hljs-subst">=</span>phar<span class="hljs-built_in">.</span>so  meteor<span class="hljs-built_in">.</span>phar patch:apply <span class="hljs-subst">--</span>path<span class="hljs-subst">=</span>/<span class="hljs-built_in">var</span>/www/jadu <span class="hljs-subst">--</span>patch<span class="hljs-attribute">-path</span><span class="hljs-subst">=</span>/home/jadu_patch</code></pre>
 
@@ -529,5 +548,7 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 <p>If the system administrator are ok with increasing the  MySql time out , increase the value of wait_timeout from</p>
 
 <p><code>wait_timeout= 60</code> to <code>wait_timeout= 200</code></p>
+
+
 
 <h2 id="other-ant-tasks">Other Ant Tasks</h2>
