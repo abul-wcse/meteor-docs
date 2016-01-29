@@ -1,4 +1,3 @@
-
 **Meteor**
 ========
 
@@ -406,4 +405,4 @@ Other Ant Tasks
 
 Table of contents
 ----
-[TOC]
+ [TOC]
