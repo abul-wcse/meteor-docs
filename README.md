@@ -1,6 +1,6 @@
 
-**Meteor**
-========
+
+##**Meteor**
 
 Meteor, a package builder and product deployment command line PHP tool, specifically designed for deploying products of Jadu and Spacecraft agency to the customer environment.
 The product such as
@@ -12,8 +12,7 @@ The product such as
 Meteor is single tool that take care of both building package and deployments. The part of meteor that performs  building packages are developed using **ANT** scripts and the other part that take care of deployments are developed using PHP script over the symphony framework as a console application.
  
 
-**Adding Meteor to your project**
-------------------------------------
+### **Adding Meteor to your project**
 Using composer is the recommended way to invoke Meteor to your project.
 
  - Add ***jadu/meteor*** as a dependency in your project's composer.json
@@ -47,8 +46,8 @@ curl -sS https://getcomposer.org/installer | php
 ```
 php composer.phar install
 ```
-**Initialising Meteor into your project**
---------------------------------------------
+### **Initialising Meteor into your project**
+
 To be able to use Meteor you need add two 2 config files into your project
  
  1. build.xml that loads in the other scripts and sets some properties
@@ -58,8 +57,7 @@ To be able to use Meteor you need add two 2 config files into your project
  ```
  ant -f vendor/jadu/meteor/res/build/ant/setup.xml setup-client
  ```
-###**Building up the build.xml**
---------------------------------------
+### **Building up the build.xml**
 
 build.xml is the configuration file that is used while creating a package. 
 There are two important parts on this configuration file. 
@@ -95,7 +93,6 @@ Example:
 >It is alway recommended to include the version file of the package/module into the file set and also update the property version-file
 
 ### **Building up Meteor.json**
--------------------------------------
 meteor.json is a configuration file that withholds the  details required for running a migration
 ```
 {
@@ -119,20 +116,19 @@ meteor.json is a configuration file that withholds the  details required for run
 > - Meteor uses Doctrine component for executing migrations, Doctrine creates a migration table inside the database and tracks which migrations have been executed there.
 > - *includeHiddenFiles* is a boolean option, based on which Meteor decides wether the hidden file like .htaccess files. It is a replacement of the option   
 
-###**Standards of naming migration tables**
--------------------------------------------------------
+### **Standards of naming migration tables**
 > - The standards of naming a migration table to work efficiently with Meteor while patch and rollback is that, the name of the table should be prefixed by <font color="red">**JaduMigrations** </font> suffixed by the product/module name <font color="red">**Core** </font> (or) <font color="red">**Xfp** </font> (or) <font color="red">**Epayments** </font>
 > **Be aware of casing, the prefix JaduMigrations should alway look  same and the name of product/module should be in a casing structure that only its first letter can be capitalised**
 
-**Baseline**
--------------------------
-###**What is Baseline?**
+### **Baseline**
+
+#### **What is Baseline?**
 The baseline is nothing else than a frozen picture of your project at a particular point time.
 Baseline is the feature that store the state of each file on the package into a single file called *baseline.properties* as a particular point time. 
 *baseline.properties* file consist of all file in the package and its relevant MD5.
 If any file is altered the MD5 of the file changed and hence its easy to file the file that are altered after the creation of baseline.
 This feature help to reduce the size of the package
-###**How  to create a baseline?**
+#### **How  to create a baseline?**
 Once you have pulled the meteor dependency into your project use composer, run
 ```
 ant package.create-baseline
@@ -144,8 +140,7 @@ ant -p
 Running the above command results in a file **baseline.properties** in *output* directory
 Copy the file **baseline.properties** to your project's root directory and commit it.
 
-##**Creating a Package**
-----------------------------
+### **Creating a Package**
 The important task of any software development company is delivering their new product to the customer properly. The deliverable package is normally referred as binary package. In Meteor, packages are generated from the version control repository using a build language, <a href="http://ant.apache.org/">Apache ANT</a>. This package is deployed to client using the meteor console application. 
 
 Creation of package is a ant tasks and it depends upon the `build.xml`. There are two types of packages that can be created
@@ -156,7 +151,7 @@ Creation of package is a ant tasks and it depends upon the `build.xml`. There ar
 ### **Full package**
 Full package is a binary package that contains all script in the repository  that matches the file set defined on the `build.xml`. The first patch after a installation to a customer should be a `full-package`. 
 
-####**How do I create a full package**
+#### **How do I create a full package**
 The base task used to create a full package is defined in the package.xml within Meteor.  The package requires two property,
 1. Package name
 2. Fileset
@@ -179,15 +174,13 @@ The base task used to create a full package is defined in the package.xml within
 
 
 
-###**Baselined package**
--------------------------------
+### **Baselined package**
+
 Baselined package is a binary package that contains files/scripts that are altered after the baseline is created in the repository that matches the file set defined on the `build.xml`. The first patch after a installation to a customer should be a `package-baselined`. 
 
-##**Meteor for deployment tasks**
-------------------------------------------
+### **Meteor for deployment tasks**
 
-###**Patching**
------------------
+### **Patching**
 The command to execute patching is
 ```
 php meteor.phar patch:apply 
@@ -216,7 +209,6 @@ While patching `--path` or / and `--patch-path` should be given based on the cur
 > - Check for the more details about dependancies <a href="">here<a>.
 
 ###**Remove Meteor lock**
--------------------------------
 This command is used when you see the following error while performing patch or rollback, 
 ```
 Creating lock file
@@ -238,7 +230,7 @@ php meteor.phar patch:clear-lock --path={JADU_HOME}
 ``` 
 
 
-###**Set permission to patch files**
+### **Set permission to patch files**
 
 If you want to set permission to the current patched files, then you can use this command. 
 
@@ -257,8 +249,7 @@ The command to invoke the above function in meteor is
 ```
 php meteor.phar set-permissions --path={JADU_HOME}
 ``` 
-###**File Migration Command**
--------
+### **File Migration Command**
 The a command to execute file migrations separately was introduced in Meteor 0.5. 
 **file-migrations:migrate**
 
@@ -267,10 +258,8 @@ To run migrations from x version to y, then you can use
 `php meteor.phar file-migrations:migrate`
 
 ### **Commands related to migrations imported from Doctrine**
---------------------
   
-##**<i class="icon-pencil">FAQs**
-------------
+###**<i class="icon-pencil">FAQs**
 <icon > **Release Notes of Meteor**
 ```
 Meteor 0.1
@@ -341,10 +330,9 @@ Any migration class file within `upgrades/migrations/filesystem` is considered t
 
 No, they aren't same, migrations:migrate is only one of the steps. After the migrations:migrate command is executed, the current status of the migration should be determined and the status file that exists in the Jadu path should be updated. The current status of the migration can be determined using the migration:status command.
 
-# **Common issues encounter while running Meteor**
-----------------------------------------------------------
+#### **Common issues encounter while running Meteor**
 
-###**error: [apc-error] Cannot redeclare class**
+##### **error: [apc-error] Cannot redeclare class**
 If you get error: [apc-error] Cannot redeclare class… There is an issue with composer and apc Run the above script by overriding the php.ini value for apc.enable_cli in order to switch it off.
 
 The command to do so:
@@ -352,20 +340,20 @@ The command to do so:
 php -d apc.enable_cli=0 meteor.phar patch:apply --path={JADU_HOME} --patch-path=/home/jadu_patch
 ``` 
 
-###**Suhosin  enabled on server**
+##### **Suhosin  enabled on server**
 If the server is Suhosin  enabled. Run the following command:
 
 ```
 php -d suhosin.executor.include.whitelist=phar meteor.phar patch:apply --path={JADU_HOME} --patch-path=/home/jadu_patch
 ```
-###**phar extension disabled**
+##### **phar extension disabled**
 If phar extension is disabled and the version of PHP on the server is greater than 5.3. 
 
 ```
 php -d extension=phar.so  meteor.phar patch:apply --path={JADU_HOME} --patch-path=/home/jadu_patch
 ```
 
-###**MySQL Timeout**
+##### **MySQL Timeout**
 If you get error: [PDOException] SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
 
 The issue is due to the connection timeout.
@@ -409,9 +397,5 @@ If the system administrator are ok with increasing the  MySql time out , increas
 
 
 
-Other Ant Tasks
------------------
-
-Table of contents
-----
+### Other Ant Tasks
 [TOC]
