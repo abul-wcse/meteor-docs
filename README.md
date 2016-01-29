@@ -1,3 +1,6 @@
+[TOC]
+
+
 **Meteor**
 ========
 
@@ -318,6 +321,14 @@ Meteor 0.5
  12.  Enables XFP Rollback by fixing table not found exception
  13. Fixed issue where file system migrations get skipped in WISP.
 ```
+
+
+----------
+
+
+----------
+
+
 **What are file migrations? Why are they needed?**
 
 File migrations are a custom type of migration that Meteor supports, which are not a part of Doctrine migrations. File migrations are migrations that involve changes in files alone, not to the database. The main reason this feature is needed is to execute such migrations on all servers on which the Jadu CMS application is installed. If a client has multiple web nodes and the file system is not a Network File System (NFS) then the file changes need to be applied to each web node.
@@ -403,6 +414,3 @@ If the system administrator are ok with increasing the  MySql time out , increas
 Other Ant Tasks
 -----------------
 
-Table of contents
-----
- [TOC]
