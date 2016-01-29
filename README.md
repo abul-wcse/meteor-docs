@@ -302,7 +302,7 @@ Meteor 0.4
 
 ```
 
-
+```
 Meteor 0.5
 
  1. Automatic detection of database driver.
@@ -318,7 +318,7 @@ Meteor 0.5
  11. Show readable backup version on list on rollback
  12.  Enables XFP Rollback by fixing table not found exception
  13. Fixed issue where file system migrations get skipped in WISP.
-
+```
 **What are file migrations? Why are they needed?**
 
 File migrations are a custom type of migration that Meteor supports, which are not a part of Doctrine migrations. File migrations are migrations that involve changes in files alone, not to the database. The main reason this feature is needed is to execute such migrations on all servers on which the Jadu CMS application is installed. If a client has multiple web nodes and the file system is not a Network File System (NFS) then the file changes need to be applied to each web node.
@@ -327,13 +327,13 @@ File migrations are a custom type of migration that Meteor supports, which are n
 	
 **How does Meteor differentiate between file migrations and database migrations?**
 
-	Any migration class file within 'upgrades/migrations/filesystem' is considered to be a file migration and the migration class files in 'upgrades/migrations' are considered to be database migration files
+Any migration class file within `upgrades/migrations/filesystem` is considered to be a file migration and the migration class files in `upgrades/migrations` are considered to be database migration files
 
 **Is the usage of migrations:migrate command when MySQL goes away is same as migrations executed as a part of patch:apply command?**
 
-	No, they aren't same, migrations:migrate is only one of the steps. After the migrations:migrate command is executed, the current status of the migration should be determined and the status file that exists in the Jadu path should be updated. The current status of the migration can be determined using the migration:status command.
+No, they aren't same, migrations:migrate is only one of the steps. After the migrations:migrate command is executed, the current status of the migration should be determined and the status file that exists in the Jadu path should be updated. The current status of the migration can be determined using the migration:status command.
 
-#**Common issues encounter while running Meteor**
+# **Common issues encounter while running Meteor**
 ----------------------------------------------------------
 
 ###**error: [apc-error] Cannot redeclare class**
