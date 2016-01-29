@@ -1,5 +1,3 @@
-[TOC]
-
 
 **Meteor**
 ========
@@ -414,3 +412,6 @@ If the system administrator are ok with increasing the  MySql time out , increas
 Other Ant Tasks
 -----------------
 
+Table of contents
+----
+[TOC]
