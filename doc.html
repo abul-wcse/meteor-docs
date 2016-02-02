@@ -44,6 +44,8 @@
 </div>
 </p>
 
+
+
 <h2 id="meteor"><strong>Meteor</strong></h2>
 
 <p>Meteor, a package builder and product deployment command line PHP tool, specifically designed for deploying products of Jadu and Spacecraft agency to the customer environment. <br>
@@ -57,6 +59,8 @@ The product such as</p>
 
 <p>Meteor is single tool that take care of both building package and deployments. The part of meteor that performs  building packages are developed using <strong>ANT</strong> scripts and the other part that take care of deployments are developed using PHP script over the symphony framework as a console application.</p>
 
+
+
 <h3 id="adding-meteor-to-your-project"><strong>Adding Meteor to your project</strong></h3>
 
 <p>Using composer is the recommended way to invoke Meteor to your project.</p>
@@ -67,6 +71,8 @@ file. As of now, Meteor is not in the registered list of composer <br>
 package. Hence include the repository in which Meteor resides, to <br>
 your project’s composer.json file,</li>
 </ul>
+
+
 
 <pre class="prettyprint"><code class=" hljs json">{
  "<span class="hljs-attribute">repositories</span>": <span class="hljs-value">[
@@ -112,6 +118,8 @@ your project’s composer.json file,</li>
 <pre class="prettyprint"><code class=" hljs lasso">ant <span class="hljs-attribute">-f</span> vendor/jadu/meteor/res/build/ant/setup<span class="hljs-built_in">.</span><span class="hljs-built_in">xml</span> setup<span class="hljs-attribute">-client</span></code></pre></li>
 </ol>
 
+
+
 <h3 id="building-up-the-buildxml"><strong>Building up the build.xml</strong></h3>
 
 <p>build.xml is the configuration file that is used while creating a package.  <br>
@@ -123,6 +131,8 @@ There are two important parts on this configuration file. </p>
 </ol>
 
 <p>The default fileset </p>
+
+
 
 <pre class="prettyprint"><code class=" hljs applescript">&lt;<span class="hljs-keyword">property</span> <span class="hljs-property">name</span>=<span class="hljs-string">"version-file"</span> value=<span class="hljs-string">"${basedir}/CLIENT_VERSION"</span> /&gt;
 &lt;include <span class="hljs-property">name</span>=<span class="hljs-string">"jadu/**"</span> /&gt;
@@ -158,6 +168,8 @@ There are two important parts on this configuration file. </p>
 <h3 id="building-up-meteorjson"><strong>Building up Meteor.json</strong></h3>
 
 <p>meteor.json is a configuration file that withholds the  details required for running a migration</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs json">{
    "<span class="hljs-attribute">migrations</span>": <span class="hljs-value">{
@@ -198,6 +210,8 @@ There are two important parts on this configuration file. </p>
 
 <h3 id="baseline"><strong>Baseline</strong></h3>
 
+
+
 <h4 id="what-is-baseline"><strong>What is Baseline?</strong></h4>
 
 <p>The baseline is nothing else than a frozen picture of your project at a particular point time. <br>
@@ -206,9 +220,13 @@ Baseline is the feature that store the state of each file on the package into a 
 If any file is altered the MD5 of the file changed and hence its easy to file the file that are altered after the creation of baseline. <br>
 This feature help to reduce the size of the package</p>
 
+
+
 <h4 id="how-to-create-a-baseline"><strong>How  to create a baseline?</strong></h4>
 
 <p>Once you have pulled the meteor dependency into your project use composer, run</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs lua">ant <span class="hljs-built_in">package</span>.create-baseline</code></pre>
 
@@ -234,15 +252,21 @@ Copy the file <strong>baseline.properties</strong> to your project’s root dire
 <li>Baselined package</li>
 </ol>
 
+
+
 <h3 id="full-package"><strong>Full package</strong></h3>
 
 <p>Full package is a binary package that contains all script in the repository  that matches the file set defined on the <code>build.xml</code>. The first patch after a installation to a customer should be a <code>full-package</code>. </p>
+
+
 
 <h4 id="how-do-i-create-a-full-package"><strong>How do I create a full package</strong></h4>
 
 <p>The base task used to create a full package is defined in the package.xml within Meteor.  The package requires two property, <br>
 1. Package name <br>
 2. Fileset</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">target</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"package"</span> <span class="hljs-attribute">depends</span>=<span class="hljs-value">"package.load-version-number"</span> <span class="hljs-attribute">description</span>=<span class="hljs-value">"Create a package "</span>&gt;</span>
 
@@ -264,11 +288,17 @@ Copy the file <strong>baseline.properties</strong> to your project’s root dire
 
 <p>Baselined package is a binary package that contains files/scripts that are altered after the baseline is created in the repository that matches the file set defined on the <code>build.xml</code>. The first patch after a installation to a customer should be a <code>package-baselined</code>. </p>
 
+
+
 <h3 id="meteor-for-deployment-tasks"><strong>Meteor for deployment tasks</strong></h3>
+
+
 
 <h3 id="patching"><strong>Patching</strong></h3>
 
 <p>The command to execute patching is</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs glsl">php meteor.phar <span class="hljs-keyword">patch</span>:apply </code></pre>
 
@@ -339,6 +369,8 @@ Copy the file <strong>baseline.properties</strong> to your project’s root dire
 
 <p>This command is used when you see the following error while performing patch or rollback, </p>
 
+
+
 <pre class="prettyprint"><code class=" hljs lasso">Creating lock file
 
 
@@ -363,6 +395,8 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 <p>If you want to set permission to the current patched files, then you can use this command. </p>
 
 <p>The command to invoke the above function in meteor is</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs livecodeserver">php meteor.phar patch:<span class="hljs-built_in">set</span>-permissions <span class="hljs-comment">--path={JADU_HOME}</span></code></pre>
 
@@ -394,6 +428,46 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 
 <p><code>php meteor.phar file-migrations:migrate</code></p>
 
+<table>
+<thead>
+<tr>
+  <th>Option</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td><code>--path</code></td>
+  <td>Jadu installation path</td>
+</tr>
+<tr>
+  <td><code>--patch-path</code></td>
+  <td>path of the package</td>
+</tr>
+<tr>
+  <td><code>{VERSION}</code></td>
+  <td>version to which the file migrations needs to migrated</td>
+</tr>
+</tbody></table>
+
+
+<p>If the given <code>{VERSION}</code> is greater than the current version, then <code>up()</code> method of any migrations with version higher than the current version and less than equal to the <code>{VERSION}</code> is executed. On the other hand if the given <code>{VERSION}</code> is less than the current version, then <code>down()</code> method of any migrations with version less than the current version and greater than or equal is executed.</p>
+
+<p><strong>How to find the current version of the file migration</strong>  <br>
+The current version of the file migration is stored in a file. Current version of the of the FSM is stored in a file of the following format</p>
+
+<pre class="prettyprint"><code class=" hljs mathematica"><span class="hljs-list">{PACKAGE_TYPE}</span>_FILE_MIGRATION_NUMBER</code></pre>
+
+<p>Example:  <br>
+For the CMS =&gt; CORE_FILE_MIGRATION_NUMBER <br>
+For the XFP =&gt; XFP_FILE_MIGRATION_NUMBER</p>
+
+<p><strong>How does meteor determine the type of the package</strong>  <br>
+The name of the file depends on the table name specified in the meteor.json of package. </p>
+
+<p>For CMS =&gt; JaduMigrationCORE and hence its CORE_FILE_MIGRATION_NUMBER <br>
+For XFP =&gt; JaduMigrationXFP and hence its XFP_FILE_MIGRATION_NUMBER <br>
+For customer package =&gt; JaduMigrationCustom and hence its  CUSTOM_FILE_MIGRATION_NUMBER</p>
+
 <h3 id="commands-related-to-migrations-imported-from-doctrine"><strong>Commands related to migrations imported from Doctrine</strong></h3>
 
 
@@ -401,6 +475,8 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 <h3 id="faqs"><strong><i class="icon-pencil">FAQs</i></strong></h3>
 
 <p> <strong>Release Notes of Meteor</strong></p>
+
+
 
 <pre class="prettyprint"><code class=" hljs mathematica">Meteor <span class="hljs-number">0.1</span>
  <span class="hljs-number">1.</span> <span class="hljs-keyword">Skip</span> Lock file</code></pre>
@@ -413,8 +489,6 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
  <span class="hljs-number">2.</span> Logging <span class="hljs-operator">in</span> Slack 
  <span class="hljs-number">3.</span> Disk <span class="hljs-constant">space</span> validation 
  <span class="hljs-number">4.</span> Reading <span class="hljs-keyword">system</span>.xml <span class="hljs-built_in">to</span> retrieve <span class="hljs-operator">the</span> database details</code></pre>
-
-
 
 <pre class="prettyprint"><code class=" hljs livecodeserver">Meteor <span class="hljs-number">0.3</span>
 
@@ -472,11 +546,15 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 
 <h4 id="common-issues-encounter-while-running-meteor"><strong>Common issues encounter while running Meteor</strong></h4>
 
+
+
 <h5 id="error-apc-error-cannot-redeclare-class"><strong>error: [apc-error] Cannot redeclare class</strong></h5>
 
 <p>If you get error: [apc-error] Cannot redeclare class… There is an issue with composer and apc Run the above script by overriding the php.ini value for apc.enable_cli in order to switch it off.</p>
 
 <p>The command to do so:</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">php</span> <span class="hljs-literal">-</span><span class="hljs-comment">d</span> <span class="hljs-comment">apc</span><span class="hljs-string">.</span><span class="hljs-comment">enable_cli=0</span> <span class="hljs-comment">meteor</span><span class="hljs-string">.</span><span class="hljs-comment">phar</span> <span class="hljs-comment">patch:apply</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">path={JADU_HOME}</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">patch</span><span class="hljs-literal">-</span><span class="hljs-comment">path=/home/jadu_patch</span></code></pre>
 
@@ -486,6 +564,8 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 
 <p>If the server is Suhosin  enabled. Run the following command:</p>
 
+
+
 <pre class="prettyprint"><code class=" hljs avrasm">php -d suhosin<span class="hljs-preprocessor">.executor</span><span class="hljs-preprocessor">.include</span><span class="hljs-preprocessor">.whitelist</span>=phar meteor<span class="hljs-preprocessor">.phar</span> patch:apply --path={JADU_HOME} --patch-path=/home/jadu_patch</code></pre>
 
 
@@ -493,6 +573,8 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 <h5 id="phar-extension-disabled"><strong>phar extension disabled</strong></h5>
 
 <p>If phar extension is disabled and the version of PHP on the server is greater than 5.3. </p>
+
+
 
 <pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">php</span> <span class="hljs-literal">-</span><span class="hljs-comment">d</span> <span class="hljs-comment">extension=phar</span><span class="hljs-string">.</span><span class="hljs-comment">so</span>  <span class="hljs-comment">meteor</span><span class="hljs-string">.</span><span class="hljs-comment">phar</span> <span class="hljs-comment">patch:apply</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">path={JADU_HOME}</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">patch</span><span class="hljs-literal">-</span><span class="hljs-comment">path=/home/jadu_patch</span></code></pre>
 
@@ -543,5 +625,7 @@ patch:apply </span><span class="hljs-preprocessor">[</span><span class="hljs-sub
 <p>If the system administrator are ok with increasing the  MySql time out , increase the value of wait_timeout from</p>
 
 <p><code>wait_timeout= 60</code> to <code>wait_timeout= 200</code></p>
+
+
 
 <h3 id="other-ant-tasks">Other Ant Tasks</h3>
